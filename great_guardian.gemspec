@@ -5,13 +5,13 @@ Gem::Specification.new do |spec|
   spec.version      = File.read('VERSION.semver').chomp
   spec.author       = 'Cyril Kato'
   spec.email        = 'contact@cyril.email'
-  spec.summary      = 'Datum validation library for Ruby'
+  spec.summary      = 'Web parameters validation for Ruby 🛡️'
   spec.description  = spec.summary
   spec.homepage     = 'https://github.com/cyril/great_guardian.rb'
   spec.license      = 'MIT'
   spec.files        = Dir['LICENSE.md', 'README.md', 'lib/**/*']
 
-  spec.add_development_dependency 'bundler',    '~> 2.0'
+  spec.add_development_dependency 'bundler',    '~> 2.1'
   spec.add_development_dependency 'rake',       '~> 13.0'
   spec.add_development_dependency 'rubocop'
   spec.add_development_dependency 'rubocop-performance'
