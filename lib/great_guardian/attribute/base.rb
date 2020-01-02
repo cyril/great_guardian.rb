@@ -13,10 +13,9 @@ module GreatGuardian
         @required           = required
       end
 
-      def call(actual_value, locale: I18n.locale)
-        actual_value = actual_value_or_default_value(actual_value)
-
-        error_message = compute_error_message(actual_value, locale: locale)
+      def call(actual_value)
+        actual_value  = actual_value_or_default_value(actual_value)
+        error_message = compute_error_message(actual_value)
 
         Verdict.new(to_s, actual_value, error_message, medium)
       end
@@ -34,7 +33,14 @@ module GreatGuardian
       end
 
       def to_s
-        self.class.name.split('::').fetch(-1).underscore
+        self.class
+            .name
+            .split('::')
+            .fetch(-1)
+            .gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
+            .gsub(/([a-z\d])([A-Z])/,'\1_\2')
+            .tr('-', '_')
+            .downcase
       end
 
       def to_sym
@@ -70,21 +76,18 @@ module GreatGuardian
         actual_value
       end
 
-      def compute_error_message(actual_value, locale:)
+      def compute_error_message(actual_value)
         return if not_required_and_nil_or_empty?(actual_value)
 
         if required_but_nil?(actual_value)
-          return i18n_attribute_error(:required,
-            name:   i18n_attribute_name(locale: locale),
-            locale: locale
-          )
+          return i18n_attribute_error(:required, name: i18n_attribute_name)
         end
 
         first_error = expected_value.first_matched_error_against(actual_value, is_native: body?)
 
         if first_error.nil?
           unless self.class.possible_values.nil?
-            actual_value_is_included_in_possible_values = if self.class.expected_value_type.equal?(ExpectedValue::Array)
+            actual_value_is_included_in_possible_values = if self.class.expected_value_type.equal?(::GreatGuardian::ExpectedValue::Array)
                                                             actual_value.all? { |item| self.class.possible_values.include?(item) }
                                                           else
                                                             self.class.possible_values.include?(actual_value)
@@ -92,9 +95,8 @@ module GreatGuardian
 
             unless actual_value_is_included_in_possible_values
               return i18n_attribute_error(:possible_values,
-                name:     i18n_attribute_name(locale: locale),
-                expected: self.class.possible_values.map(&:inspect).sort.join(', '),
-                locale:   locale
+                name:     i18n_attribute_name,
+                expected: self.class.possible_values.map(&:inspect).sort.join(', ')
               )
             end
           end
@@ -102,7 +104,7 @@ module GreatGuardian
           error_on_complex_validation_logic = self.class.first_matched_error_on_complex_validation_logic_against(actual_value)
 
           unless error_on_complex_validation_logic.nil?
-            return i18n_attribute_error(error_on_complex_validation_logic, locale: locale)
+            return i18n_attribute_error(error_on_complex_validation_logic)
           end
         end
 
@@ -111,13 +113,12 @@ module GreatGuardian
         expected = expected_value.public_send(first_error)
 
         if first_error.equal?(:type)
-          expected = i18n_expected_value_type(expected_value.type, locale: locale)
+          expected = i18n_expected_value_type(expected_value.type)
         end
 
         i18n_attribute_error(first_error,
-          name:     i18n_attribute_name(locale: locale),
-          expected: expected,
-          locale:   locale
+          name:     i18n_attribute_name,
+          expected: expected
         )
       end
 
@@ -134,44 +135,26 @@ module GreatGuardian
         actual_value.nil? && required?
       end
 
-      def i18n_attribute_name(locale:)
-        specific_attribute_name_key = "attribute.#{self.to_sym}.name"
-
-        attribute_name_key =  if I18n.exists?(specific_attribute_name_key)
-                                specific_attribute_name_key
-                              else
-                                # @note I18n key is missing!
-                                #   key: specific_attribute_name_key
-
-                                'attribute.base.name'
-                              end
-
-        I18n.t(attribute_name_key,
-          locale: locale
-        )
+      def i18n_attribute_name
+        [
+          "attribute.#{self.to_sym}.name"
+        ]
       end
 
-      def i18n_expected_value_type(expected_value, locale:)
-        I18n.t("expected_value.#{expected_value}.type", locale: locale)
+      def i18n_expected_value_type(expected_value)
+        [
+          "expected_value.#{expected_value}.type"
+        ]
       end
 
-      def i18n_attribute_error(error, name: nil, expected: nil, locale:)
-        specific_attribute_error_key = "attribute.#{self.to_sym}.errors.#{error}"
-
-        attribute_error_key = if I18n.exists?(specific_attribute_error_key)
-                                specific_attribute_error_key
-                              else
-                                # @note I18n key is missing!
-                                #   key: specific_attribute_error_key
-
-                                "attribute.base.errors.#{error}"
-                              end
-
-        I18n.t(attribute_error_key,
-          name:     name,
-          expected: expected,
-          locale:   locale
-        )
+      def i18n_attribute_error(error, name: nil, expected: nil)
+        [
+          "attribute.#{self.to_sym}.errors.#{error}",
+          {
+            name:     name,
+            expected: expected
+          }
+        ]
       end
     end
   end

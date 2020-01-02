@@ -1,0 +1,50 @@
+---
+header: |
+  # frozen_string_literal: true
+
+  require 'simplecov'
+
+  SimpleCov.command_name 'Brutal test suite'
+  SimpleCov.start
+
+  begin
+    require_relative '../../lib/great_guardian'
+  rescue ::LoadError
+    require '../../lib/great_guardian'
+  end
+
+  class EmailAttribute < GreatGuardian::Attribute::Base
+    def self.expected_value_type
+      ::GreatGuardian::ExpectedValue::String
+    end
+
+    def self.default_constraints
+      {
+        pattern: /\A[^@]+@[^@]+$\z/i
+      }
+    end
+  end
+
+front_object: |
+  EmailAttribute
+
+subject: |
+  %{front_object}.new(required: %{boolean}).call(%{actual_value})
+
+variables:
+  boolean:
+    - true
+    - false
+  actual_value:
+    - nil
+    - 4
+    - "'boom'"
+    - "'bob@gmail.com'"
+
+actual_values:
+  - "%{subject}.valid?"
+  - "%{subject}.invalid?"
+  - "%{subject}.to_s"
+  - "%{subject}.value"
+  - "%{subject}.error_message"
+  - "%{subject}.medium"
