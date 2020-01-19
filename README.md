@@ -48,14 +48,7 @@ email_attribute.call('bob@gmail.com') # => #<GreatGuardian::Verdict:0x00007ffd3e
 
 ## Contact
 
-* Home page: https://github.com/cyril/great_guardian.rb
-* Bugs/issues: https://github.com/cyril/great_guardian.rb/issues
-
-## Rubies
-
-* [MRI](https://www.ruby-lang.org/)
-* [Rubinius](https://rubinius.com/)
-* [JRuby](https://www.jruby.org/)
+* Source code: https://github.com/cyril/great_guardian.rb
 
 ## Versioning
 
