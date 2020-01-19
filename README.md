@@ -1,5 +1,6 @@
 # Great Guardian
 
+[![Actions Status](https://github.com/cyril/great_guardian.rb/workflows/rubocop/badge.svg)](https://github.com/cyril/great_guardian.rb/actions?query=workflow%3ARuboCop)
 [![Build Status](https://api.travis-ci.org/cyril/great_guardian.rb.svg?branch=master)][travis]
 [![Gem Version](https://badge.fury.io/rb/great_guardian.svg)][gem]
 [![Inline docs](https://inch-ci.org/github/cyril/great_guardian.rb.svg?branch=master)][inchpages]
@@ -46,31 +47,29 @@ email_attribute.call('boom') # => #<GreatGuardian::Verdict:0x00007ffd3e3d8360 @a
 email_attribute.call('bob@gmail.com') # => #<GreatGuardian::Verdict:0x00007ffd3e3c23d0 @attribute_name="email_attribute", @value="bob@gmail.com", @error_message=nil, @medium=:body>
 ```
 
+### Rails integration example
+
+```ruby
+# app/controllers/signup_controller.rb
+class SignupController < ApplicationController
+  def create
+    email = EmailAttribute.new(required: true).call(params['email'])
+
+    if email.valid?
+      User.create!(email: email.value)
+    else
+      render json: { email: I18n.t(*email.error_message) }, status: :unprocessable_entity
+    end
+  end
+end
+```
+
 ## Built-in expected values
 
-### `GreatGuardian::ExpectedValue::Array`
-
-Constraints:
-
-* `minlen`
-* `maxlen`
-
-### `GreatGuardian::ExpectedValue::Boolean`
-
-### `GreatGuardian::ExpectedValue::Number`
-
-Constraints:
-
-* `min`
-* `max`
-
-### `GreatGuardian::ExpectedValue::String`
-
-Constraints:
-
-* `minlen`
-* `maxlen`
-* `pattern`
+* `GreatGuardian::ExpectedValue::Array` (constraints: `minlen`, `maxlen`)
+* `GreatGuardian::ExpectedValue::Boolean`
+* `GreatGuardian::ExpectedValue::Number` (constraints: `min`, `max`)
+* `GreatGuardian::ExpectedValue::String` (constraints: `minlen`, `maxlen`, `pattern`)
 
 ## Contact
 
