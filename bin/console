@@ -3,4 +3,5 @@
 require 'bundler/setup'
 require 'great_guardian'
 require 'irb'
+
 IRB.start(__FILE__)
