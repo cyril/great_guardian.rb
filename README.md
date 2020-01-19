@@ -46,6 +46,32 @@ email_attribute.call('boom') # => #<GreatGuardian::Verdict:0x00007ffd3e3d8360 @a
 email_attribute.call('bob@gmail.com') # => #<GreatGuardian::Verdict:0x00007ffd3e3c23d0 @attribute_name="email_attribute", @value="bob@gmail.com", @error_message=nil, @medium=:body>
 ```
 
+## Built-in expected values
+
+### `GreatGuardian::ExpectedValue::Array`
+
+Constraints:
+
+* `minlen`
+* `maxlen`
+
+### `GreatGuardian::ExpectedValue::Boolean`
+
+### `GreatGuardian::ExpectedValue::Number`
+
+Constraints:
+
+* `min`
+* `max`
+
+### `GreatGuardian::ExpectedValue::String`
+
+Constraints:
+
+* `minlen`
+* `maxlen`
+* `pattern`
+
 ## Contact
 
 * Source code: https://github.com/cyril/great_guardian.rb
