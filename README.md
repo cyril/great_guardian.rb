@@ -1,6 +1,6 @@
 # Great Guardian
 
-[![Actions Status](https://github.com/cyril/great_guardian.rb/workflows/RuboCop/badge.svg)](https://github.com/cyril/great_guardian.rb/actions?query=workflow%3ARuboCop)
+[![Actions Status](https://github.com/cyril/great_guardian.rb/workflows/RuboCop/badge.svg)][workflow_rubocop]
 [![Build Status](https://api.travis-ci.org/cyril/great_guardian.rb.svg?branch=master)][travis]
 [![Gem Version](https://badge.fury.io/rb/great_guardian.svg)][gem]
 [![Inline docs](https://inch-ci.org/github/cyril/great_guardian.rb.svg?branch=master)][inchpages]
@@ -83,6 +83,7 @@ __GreatGuardian__ follows [Semantic Versioning 2.0](https://semver.org/).
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
 
+[workflow_rubocop]: https://github.com/cyril/great_guardian.rb/actions?query=workflow%3ARuboCop
 [gem]: https://rubygems.org/gems/great_guardian
 [travis]: https://travis-ci.org/cyril/great_guardian.rb
 [inchpages]: https://inch-ci.org/github/cyril/great_guardian.rb
