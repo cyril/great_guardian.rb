@@ -1,6 +1,6 @@
 # Great Guardian
 
-[![Actions Status](https://github.com/cyril/great_guardian.rb/workflows/rubocop/badge.svg)](https://github.com/cyril/great_guardian.rb/actions?query=workflow%3ARuboCop)
+[![Actions Status](https://github.com/cyril/great_guardian.rb/workflows/RuboCop/badge.svg)](https://github.com/cyril/great_guardian.rb/actions?query=workflow%3ARuboCop)
 [![Build Status](https://api.travis-ci.org/cyril/great_guardian.rb.svg?branch=master)][travis]
 [![Gem Version](https://badge.fury.io/rb/great_guardian.svg)][gem]
 [![Inline docs](https://inch-ci.org/github/cyril/great_guardian.rb.svg?branch=master)][inchpages]
