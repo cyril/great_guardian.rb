@@ -13,23 +13,20 @@ header: |
     require './code'
   end
 
-front_object: |
-  EmailAttribute
-
 subject: |
-  %{front_object}.new(required: %{boolean}).call(%{actual_value})
+  EmailAttribute.new(required: %{boolean}).call(%{actual_value})
 
-variables:
-  boolean:
+contexts:
+  :boolean:
     - true
     - false
-  actual_value:
+  :actual_value:
     - nil
     - 4
     - "'boom'"
     - "'bob@gmail.com'"
 
-actual_values:
+actuals:
   - "%{subject}.valid?"
   - "%{subject}.invalid?"
   - "%{subject}.to_s"

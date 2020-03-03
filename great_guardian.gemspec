@@ -11,10 +11,11 @@ Gem::Specification.new do |spec|
   spec.license      = 'MIT'
   spec.files        = Dir['LICENSE.md', 'README.md', 'lib/**/*']
 
-  spec.add_development_dependency 'bundler',    '~> 2.1'
-  spec.add_development_dependency 'rake',       '~> 13.0'
-  spec.add_development_dependency 'rubocop'
+  spec.add_development_dependency 'brutal'
+  spec.add_development_dependency 'bundler'
+  spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rubocop-performance'
-  spec.add_development_dependency 'simplecov',  '~> 0.17'
-  spec.add_development_dependency 'yard',       '~> 0.9'
+  spec.add_development_dependency 'rubocop-thread_safety'
+  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'yard'
 end

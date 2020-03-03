@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module GreatGuardian
-  # Decision of Great Guardian.
+  # Verdict of Great Guardian.
   class Verdict
     attr_reader :value, :error_message, :medium
 
