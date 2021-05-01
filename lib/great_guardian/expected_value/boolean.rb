@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'base'
+require_relative "base"
 
 module GreatGuardian
   module ExpectedValue
@@ -16,8 +16,8 @@ module GreatGuardian
       end
 
       def emulate(value)
-        return true   if value.eql?('true')
-        return false  if value.eql?('false')
+        return true   if value.eql?("true")
+        return false  if value.eql?("false")
 
         value
       end

@@ -37,11 +37,11 @@ module GreatGuardian
       def to_s
         self.class
             .name
-            .split('::')
+            .split("::")
             .fetch(-1)
             .gsub(/([A-Z]+)([A-Z][a-z])/,'\1_\2')
             .gsub(/([a-z\d])([A-Z])/,'\1_\2')
-            .tr('-', '_')
+            .tr("-", "_")
             .downcase
       end
 
@@ -98,7 +98,7 @@ module GreatGuardian
             unless actual_value_is_included_in_possible_values
               return i18n_attribute_error(:possible_values,
                 name:     i18n_attribute_name,
-                expected: self.class.possible_values.map(&:inspect).sort.join(', ')
+                expected: self.class.possible_values.map(&:inspect).sort.join(", ")
               )
             end
           end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'base'
+require_relative "base"
 
 module GreatGuardian
   module ExpectedValue
@@ -14,6 +14,8 @@ module GreatGuardian
         if !min.nil? && !max.nil? && (min > max)
           raise ::ArgumentError, min.inspect, max.inspect
         end
+
+        super
 
         @min = min
         @max = max
@@ -33,7 +35,7 @@ module GreatGuardian
 
       def emulate(value)
         if value.match?(/\A-?([0-9]+.)?[0-9]+\z/)
-          return value.include?('.') ? value.to_f : value.to_i
+          return value.include?(".") ? value.to_f : value.to_i
         end
 
         value

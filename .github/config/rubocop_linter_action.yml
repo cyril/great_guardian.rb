@@ -1,4 +1,5 @@
 versions:
+  - rubocop-md
   - rubocop-performance
   - rubocop-thread_safety
 

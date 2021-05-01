@@ -17,10 +17,10 @@ subject: |
   EmailAttribute.new(required: %{boolean}).call(%{actual_value})
 
 contexts:
-  :boolean:
+  boolean:
     - true
     - false
-  :actual_value:
+  actual_value:
     - nil
     - 4
     - "'boom'"

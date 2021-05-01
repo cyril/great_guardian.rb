@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'base'
+require_relative "base"
 
 module GreatGuardian
   module ExpectedValue
@@ -14,6 +14,8 @@ module GreatGuardian
         if !minlen.nil? && !maxlen.nil? && (minlen > maxlen)
           raise ::ArgumentError, minlen.inspect, maxlen.inspect
         end
+
+        super
 
         @minlen = minlen
         @maxlen = maxlen
@@ -32,8 +34,8 @@ module GreatGuardian
       end
 
       def emulate(value)
-        if value.to_s.start_with?('[') && value.to_s.end_with?(']')
-          return value.to_s.split(',').map(&:strip)
+        if value.to_s.start_with?("[") && value.to_s.end_with?("]")
+          return value.to_s.split(",").map(&:strip)
         end
 
         value

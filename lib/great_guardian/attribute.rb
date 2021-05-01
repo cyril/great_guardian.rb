@@ -6,6 +6,6 @@ module GreatGuardian
   end
 end
 
-Dir[File.join File.dirname(__FILE__), 'attribute', '*.rb'].each do |fname|
+Dir[File.join File.dirname(__FILE__), "attribute", "*.rb"].each do |fname|
   require_relative fname
 end

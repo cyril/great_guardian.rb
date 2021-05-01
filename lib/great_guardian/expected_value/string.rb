@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'base'
+require_relative "base"
 
 module GreatGuardian
   module ExpectedValue
@@ -16,6 +16,8 @@ module GreatGuardian
         end
 
         raise ::ArgumentError, pattern.inspect if !pattern.nil? && !pattern.is_a?(::Regexp)
+
+        super
 
         @minlen   = minlen
         @maxlen   = maxlen
