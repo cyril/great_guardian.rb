@@ -44,7 +44,7 @@ Metrics/AbcSize:
 # Offense count: 1
 # Configuration parameters: CountComments, CountAsOne.
 Metrics/ClassLength:
-  Max: 118
+  Max: 121
 
 # Offense count: 5
 # Configuration parameters: IgnoredMethods.
@@ -61,14 +61,6 @@ Metrics/MethodLength:
 Metrics/PerceivedComplexity:
   Max: 13
 
-# Offense count: 1
-# Cop supports --auto-correct.
-# Configuration parameters: EnforcedStyle.
-# SupportedStyles: compact, expanded
-Style/EmptyMethod:
-  Exclude:
-    - 'lib/great_guardian/expected_value/base.rb'
-
 # Offense count: 7
 # Cop supports --auto-correct.
 Style/IfUnlessModifier:
@@ -78,7 +70,7 @@ Style/IfUnlessModifier:
     - 'lib/great_guardian/expected_value/number.rb'
     - 'lib/great_guardian/expected_value/string.rb'
 
-# Offense count: 2
+# Offense count: 1
 # Cop supports --auto-correct.
 Style/RedundantSelf:
   Exclude:

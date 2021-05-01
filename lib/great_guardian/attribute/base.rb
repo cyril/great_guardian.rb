@@ -137,9 +137,13 @@ module GreatGuardian
         actual_value.nil? && required?
       end
 
+      def i18n_attribute_root_key
+        "attribute.#{self.to_sym}"
+      end
+
       def i18n_attribute_name
         [
-          "attribute.#{self.to_sym}.name"
+          "#{i18n_attribute_root_key}.name"
         ]
       end
 
@@ -151,7 +155,7 @@ module GreatGuardian
 
       def i18n_attribute_error(error, name: nil, expected: nil)
         [
-          "attribute.#{self.to_sym}.errors.#{error}",
+          "#{i18n_attribute_root_key}.errors.#{error}",
           {
             name:     name,
             expected: expected
