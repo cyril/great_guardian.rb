@@ -5,7 +5,17 @@ module GreatGuardian
     class Base
       attr_reader :custom_constraints, :default_value, :medium
 
-      def initialize(required: true, medium: :body, default_value: nil, **custom_constraints)
+      def self.default_constraints
+        {}
+      end
+
+      def self.default_value; end
+
+      def self.first_matched_error_on_complex_validation_logic_against(_actual_value); end
+
+      def self.possible_values; end
+
+      def initialize(default_value: nil, medium: :body, required: true, **custom_constraints)
         raise ::ArgumentError, required.inspect unless [false, true].include?(required)
         raise ::ArgumentError, medium.inspect    unless %i[body header querystring].include?(medium)
 
@@ -56,16 +66,6 @@ module GreatGuardian
       def header_or_querystring?
         !body?
       end
-
-      def self.possible_values; end
-
-      def self.default_value; end
-
-      def self.default_constraints
-        {}
-      end
-
-      def self.first_matched_error_on_complex_validation_logic_against(_actual_value); end
 
       private
 

@@ -28,14 +28,14 @@ Or install it yourself as:
 
 ```ruby
 class EmailAttribute < GreatGuardian::Attribute::Base
-  def self.expected_value_type
-    ::GreatGuardian::ExpectedValue::String
-  end
-
   def self.default_constraints
     {
       pattern: /\A[^@]+@[^@]+$\z/i
     }
+  end
+
+  def self.expected_value_type
+    ::GreatGuardian::ExpectedValue::String
   end
 end
 

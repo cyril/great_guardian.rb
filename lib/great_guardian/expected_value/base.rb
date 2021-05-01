@@ -3,7 +3,8 @@
 module GreatGuardian
   module ExpectedValue
     class Base
-      def initialize(**)
+      def self.types
+        raise ::NotImplementedError
       end
 
       def valid_type?(actual_value)
@@ -20,10 +21,6 @@ module GreatGuardian
             .tr("-", "_")
             .downcase
             .to_sym
-      end
-
-      def self.types
-        raise ::NotImplementedError
       end
     end
   end

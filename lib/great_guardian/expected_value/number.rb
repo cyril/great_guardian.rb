@@ -7,6 +7,10 @@ module GreatGuardian
     class Number < Base
       attr_reader :min, :max
 
+      def self.types
+        [::Numeric]
+      end
+
       def initialize(min: nil, max: nil)
         raise ::ArgumentError, min.inspect if !min.nil? && !min.is_a?(::Numeric)
         raise ::ArgumentError, max.inspect if !max.nil? && !max.is_a?(::Numeric)
@@ -15,7 +19,7 @@ module GreatGuardian
           raise ::ArgumentError, min.inspect, max.inspect
         end
 
-        super
+        super()
 
         @min = min
         @max = max
@@ -27,10 +31,6 @@ module GreatGuardian
         return :type  unless valid_type?(actual_value)
         return :min   if !min.nil? && actual_value < min
         return :max   if !max.nil? && actual_value > max
-      end
-
-      def self.types
-        [::Numeric]
       end
 
       def emulate(value)

@@ -7,6 +7,10 @@ module GreatGuardian
     class String < Base
       attr_reader :minlen, :maxlen, :pattern
 
+      def self.types
+        [::String]
+      end
+
       def initialize(minlen: nil, maxlen: nil, pattern: nil)
         raise ::ArgumentError, minlen.inspect if !minlen.nil? && !minlen.is_a?(::Integer)
         raise ::ArgumentError, maxlen.inspect if !maxlen.nil? && !maxlen.is_a?(::Integer)
@@ -17,7 +21,7 @@ module GreatGuardian
 
         raise ::ArgumentError, pattern.inspect if !pattern.nil? && !pattern.is_a?(::Regexp)
 
-        super
+        super()
 
         @minlen   = minlen
         @maxlen   = maxlen
@@ -31,10 +35,6 @@ module GreatGuardian
         return :minlen  if !minlen.nil? && actual_value.length < minlen
         return :maxlen  if !maxlen.nil? && actual_value.length > maxlen
         return :pattern if !pattern.nil? && !actual_value.match?(pattern)
-      end
-
-      def self.types
-        [::String]
       end
 
       def emulate(value)

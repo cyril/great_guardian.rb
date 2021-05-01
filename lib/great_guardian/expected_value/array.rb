@@ -7,6 +7,10 @@ module GreatGuardian
     class Array < Base
       attr_reader :minlen, :maxlen
 
+      def self.types
+        [::Array]
+      end
+
       def initialize(minlen: nil, maxlen: nil)
         raise ::ArgumentError, minlen.inspect if !minlen.nil? && !minlen.is_a?(::Integer)
         raise ::ArgumentError, maxlen.inspect if !maxlen.nil? && !maxlen.is_a?(::Integer)
@@ -15,7 +19,7 @@ module GreatGuardian
           raise ::ArgumentError, minlen.inspect, maxlen.inspect
         end
 
-        super
+        super()
 
         @minlen = minlen
         @maxlen = maxlen
@@ -27,10 +31,6 @@ module GreatGuardian
         return :type    unless valid_type?(actual_value)
         return :minlen  if !minlen.nil? && actual_value.length < minlen
         return :maxlen  if !maxlen.nil? && actual_value.length > maxlen
-      end
-
-      def self.types
-        [::Array]
       end
 
       def emulate(value)
