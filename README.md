@@ -1,10 +1,10 @@
 # Great Guardian
 
-[![RuboCop Status](https://github.com/cyril/great_guardian.rb/workflows/RuboCop/badge.svg)][workflow_rubocop]
-[![Build Status](https://api.travis-ci.org/cyril/great_guardian.rb.svg?branch=master)][travis]
-[![Gem Version](https://badge.fury.io/rb/great_guardian.svg)][gem]
-[![Inline docs](https://inch-ci.org/github/cyril/great_guardian.rb.svg?branch=master)][inchpages]
-[![Documentation](http://img.shields.io/:yard-docs-38c800.svg)][rubydoc]
+[![Version](https://img.shields.io/github/v/tag/cyril/great_guardian.rb?label=Version&logo=github)](https://github.com/cyril/great_guardian.rb/releases)
+[![Yard documentation](https://img.shields.io/badge/Yard-documentation-blue.svg?logo=github)](https://rubydoc.info/github/cyril/great_guardian.rb/main)
+[![CI](https://github.com/cyril/great_guardian.rb/workflows/CI/badge.svg?branch=main)](https://github.com/cyril/great_guardian.rb/actions?query=workflow%3Aci+branch%3Amain)
+[![RuboCop](https://github.com/cyril/great_guardian.rb/workflows/RuboCop/badge.svg?branch=main)](https://github.com/cyril/great_guardian.rb/actions?query=workflow%3Arubocop+branch%3Amain)
+[![License](https://img.shields.io/github/license/cyril/great_guardian.rb?label=License&logo=github)](https://github.com/cyril/great_guardian.rb/raw/main/LICENSE.md)
 
 > Web parameters validation for Ruby 🛡️
 
@@ -18,11 +18,15 @@ gem "great_guardian", ">= 0.1.0.beta1"
 
 And then execute:
 
-    $ bundle install
+```sh
+bundle install
+```
 
 Or install it yourself as:
 
-    $ gem install great_guardian --pre
+```sh
+gem install great_guardian --pre
+```
 
 ## Usage
 
@@ -81,10 +85,4 @@ __GreatGuardian__ follows [Semantic Versioning 2.0](https://semver.org/).
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
-
-[workflow_rubocop]: https://github.com/cyril/great_guardian.rb/actions?query=workflow%3ARuboCop
-[gem]: https://rubygems.org/gems/great_guardian
-[travis]: https://travis-ci.org/cyril/great_guardian.rb
-[inchpages]: https://inch-ci.org/github/cyril/great_guardian.rb
-[rubydoc]: https://rubydoc.info/gems/great_guardian/frames
+The [gem](https://rubygems.org/gems/great_guardian) is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
